@@ -5,12 +5,13 @@ class AuthenticationsController < ApplicationController
 
   def create
     data = request.env["omniauth.auth"]
-    email = data[:extra][:raw_info][:email]
-
+    email = data[:info][:email]
+#    [:extra][:raw_info][:email]
 
     user = User.find_by_email(email)
 
     if user.blank?
+      user = User.new
       user.email = email
       user.name = data[:info][:name]
       password_length = 8
