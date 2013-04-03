@@ -2,12 +2,11 @@ Welcome!
 
 <% if user_signed_in? %>
     Hello and I love you, <%= current_user.name %>!
+    <img src="<%= current_user.image_url %>">
 <% end %>
 
-<br>
-
-<a href="/auth/facebook">Thru Facebook</a>
-<a href="/auth/linkedin">Thru LinkedIn</a>
-
-
+<% if not user_signed_in? %>
+    <a href="/auth/facebook">Thru Facebook</a>
+    <a href="/auth/linkedin">Thru LinkedIn</a>
+<% end %>
 

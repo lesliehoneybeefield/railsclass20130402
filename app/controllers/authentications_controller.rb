@@ -6,14 +6,12 @@ class AuthenticationsController < ApplicationController
   def create
     data = request.env["omniauth.auth"]
     email = data[:info][:email]
-#    [:extra][:raw_info][:email]
-
     user = User.find_by_email(email)
-
     if user.blank?
       user = User.new
       user.email = email
       user.name = data[:info][:name]
+      user.image_url = data[:info][:image]
       password_length = 8
       password = Devise.friendly_token.first(password_length)
       user.password = password
@@ -21,11 +19,7 @@ class AuthenticationsController < ApplicationController
     else
       sign_in(user)
     end
-
-
-
     redirect_to :root
-
   end
 
 end
