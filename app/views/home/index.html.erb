@@ -1,4 +1,13 @@
 Welcome!
+
+<% if user_signed_in? %>
+    Hello and I love you, <%= current_user.name %>!
+<% end %>
+
+<br>
+
 <a href="/auth/facebook">Thru Facebook</a>
 <a href="/auth/linkedin">Thru LinkedIn</a>
+
+
 
